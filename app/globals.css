@@ -1,0 +1,83 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #0c0708;
+  --color-panel: #140d0e;
+  --color-red: #d4151c;
+  --color-red-deep: #7d0b10;
+  --color-ink: #f3ede9;
+  --color-mute: #a1938f;
+  --color-line: #2b1c1d;
+  --font-display: var(--font-anton), Impact, 'Arial Narrow', sans-serif;
+  --font-body: var(--font-dm-sans), 'Helvetica Neue', Arial, sans-serif;
+  --container: 1180px;
+  --ease-enter: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Wadah konten: 24 px di samping (18 px di bawah 600 px). */
+@utility wrap {
+  margin-inline: auto;
+  max-width: var(--container);
+  padding-inline: 18px;
+  @media (min-width: 600px) {
+    padding-inline: 24px;
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  /* Navbar lengket: dua baris di HP, satu baris dari 768 px. */
+  html {
+    scroll-padding-top: 7rem;
+    @media (min-width: 768px) {
+      scroll-padding-top: 5rem;
+    }
+  }
+  body {
+    @apply bg-bg font-body text-ink antialiased;
+    line-height: 1.6;
+  }
+  /* Tailwind 4 mengembalikan kursor bawaan pada tombol; DESIGN meminta tombol terasa bisa diklik. */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+  ::selection {
+    @apply bg-red text-ink;
+  }
+  :focus-visible {
+    @apply outline-red outline-2 outline-offset-4;
+  }
+}
+
+/* Keadaan awal animasi hanya aktif bila JS berjalan (CLAUDE §4.1). */
+.js [data-reveal] {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+  }
+}
+
+/* Preloader tampil hanya bila JS aktif dan belum dilewati. Cadangan: hilang sendiri bila skrip gagal. */
+[data-preloader] {
+  display: none;
+}
+.js:not(.skip-preloader) [data-preloader] {
+  display: grid;
+  animation: preloader-fallback 0s linear 4s forwards;
+}
+@keyframes preloader-fallback {
+  to {
+    visibility: hidden;
+  }
+}
