@@ -35,7 +35,7 @@ export const projects: Project[] = [
       'JWT',
     ],
     status: 'repo',
-    cover: '/projects/#',
+    cover: '/projects/attendance.png',
     featured: true,
     repoUrl: gh('attendance-system'),
     highlights: [
@@ -63,7 +63,7 @@ export const projects: Project[] = [
       'JWT',
     ],
     status: 'repo',
-    cover: '/projects/#',
+    cover: '/projects/maintenance.png',
     featured: true,
     repoUrl: gh('maintenance-system'),
     highlights: [
@@ -91,7 +91,7 @@ export const projects: Project[] = [
   ],
   status: 'repo',
   featured: true,
-  cover: '/projects/wf1-.jpg',  
+  cover: '/projects/WF.png',  
   highlights: [
     'Beranda, katalog produk, dan keranjang dengan pilihan ukuran; isi keranjang tersimpan di browser (Zustand).',
     'Keranjang otomatis menjadi pesan WhatsApp berisi item, ukuran, dan total.',
