@@ -2,6 +2,7 @@ import { projects } from './projects'
 
 const certificates = [
   { name: 'LSP Junior Web Development', issuer: 'BNSP', year: '2026' },
+  { name: 'AI Productivity & AI API Integration for Developers', issuer: 'Hacktiv8', year: '2026' },
   { name: 'Intro to Data Analytics', issuer: 'RevoU', year: '2026' },
   { name: 'Web Development', issuer: 'Infinite Learning', year: '2023' },
 ]

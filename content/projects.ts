@@ -10,9 +10,11 @@ export type Project = {
   featured: boolean
   repoUrl?: string
   demoUrl?: string
+  apiHealthUrl?: string
   cover?: string
   highlights?: string[]
   note?: string
+  steps?: string[]
 }
 
 const gh = (repo: string) => `https://github.com/prasetyoaji07/${repo}`
@@ -38,10 +40,20 @@ export const projects: Project[] = [
     cover: '/projects/attendance.png',
     featured: true,
     repoUrl: gh('attendance-system'),
+    apiHealthUrl:
+      'https://attendance-system-1b594.containers.snapdeploy.app/api/health',
+    demoUrl: 'https://attendance-system-sigma-ebon.vercel.app/login',
     highlights: [
       'Autentikasi JWT, penjadwalan roster, dan pengelolaan status kehadiran.',
       'Validasi check-in dan check-out dengan QR dinamis, GPS geofencing, dan device binding.',
       'Aturan bisnis dan database diuji dengan data simulasi.',
+    ],
+    steps: [
+      'Klik tombol "Hidupkan server demo" di bagian Tautan. Server gratis tidur bila lama tidak dipakai, jadi butuh sekitar 30 sampai 90 detik untuk bangun.',
+      'Tunggu sampai muncul tulisan "Server siap". Tombol akan berubah menjadi "Buka demo".',
+      'Klik "Buka demo". Halaman login akan terbuka di tab baru.',
+      'Login dengan akun demo: email demo01-demo05, kata sandi simulasi123.',
+      'Izinkan akses kamera dan lokasi bila diminta, karena absen memakai selfie, QR, dan GPS.',
     ],
     note: 'Data uji simulasi.',
   },
@@ -75,30 +87,30 @@ export const projects: Project[] = [
     note: 'Data uji simulasi.',
   },
   {
-  slug: 'wonderfool',
-  name: 'Wonderfool',
-  kind: 'Toko online brand pakaian',
-  summary:
-    'Website toko online untuk brand pakaian sendiri: katalog, keranjang, dan pemesanan lewat WhatsApp, dengan animasi scroll.',
-  role: 'Proyek pribadi, brand dan website dikerjakan sendiri',
-  stack: [
-    'Next.js 15',
-    'TypeScript',
-    'Tailwind CSS',
-    'GSAP',
-    'Zustand',
-    'React 19',
-  ],
-  status: 'repo',
-  featured: true,
-  cover: '/projects/WF.png',  
-  highlights: [
-    'Beranda, katalog produk, dan keranjang dengan pilihan ukuran; isi keranjang tersimpan di browser (Zustand).',
-    'Keranjang otomatis menjadi pesan WhatsApp berisi item, ukuran, dan total.',
-    'Animasi scroll dan transisi halaman dengan GSAP dan Lenis, mengikuti sistem desain sendiri (token warna, font, spasi).',
-  ],
-  note: 'Brand belum dirilis.',
-},
+    slug: 'wonderfool',
+    name: 'Wonderfool',
+    kind: 'Toko online brand pakaian',
+    summary:
+      'Website toko online untuk brand pakaian sendiri: katalog, keranjang, dan pemesanan lewat WhatsApp, dengan animasi scroll.',
+    role: 'Proyek pribadi, brand dan website dikerjakan sendiri',
+    stack: [
+      'Next.js 15',
+      'TypeScript',
+      'Tailwind CSS',
+      'GSAP',
+      'Zustand',
+      'React 19',
+    ],
+    status: 'repo',
+    featured: true,
+    cover: '/projects/WF.png',
+    highlights: [
+      'Beranda, katalog produk, dan keranjang dengan pilihan ukuran; isi keranjang tersimpan di browser (Zustand).',
+      'Keranjang otomatis menjadi pesan WhatsApp berisi item, ukuran, dan total.',
+      'Animasi scroll dan transisi halaman dengan GSAP dan Lenis, mengikuti sistem desain sendiri (token warna, font, spasi).',
+    ],
+    note: 'Brand belum dirilis.',
+  },
   {
     slug: 'technova-ecommerce',
     name: 'TechNova',
@@ -135,28 +147,28 @@ export const projects: Project[] = [
     featured: false,
     repoUrl: gh('kecaknik-food'),
   },
-   {
-  slug: 'warkopolo',
-  name: 'Warkopolo',
-  kind: 'Sistem pemesanan restoran',
-  summary:
-    'Aplikasi pelanggan, aplikasi kasir, dan REST API untuk pemesanan restoran.',
-  role: 'Proyek pribadi, dikerjakan sendiri',
-  stack: [
-    'React (Vite)',
-    'Node.js',
-    'Express',
-    'MySQL (Aiven Cloud)',
-    'Git/GitHub',
-  ],
-  status: 'repo',
-  featured: false,
-  repoUrl: gh('warkopolo'),
-  highlights: [
-    'Alur status pesanan, validasi input, dan pengelolaan meja secara transaksional.',
-    'Pembatalan booking yang tidak hadir, penyelesaian pesanan, dan pengosongan meja otomatis.',
-  ],
-},
+  {
+    slug: 'warkopolo',
+    name: 'Warkopolo',
+    kind: 'Sistem pemesanan restoran',
+    summary:
+      'Aplikasi pelanggan, aplikasi kasir, dan REST API untuk pemesanan restoran.',
+    role: 'Proyek pribadi, dikerjakan sendiri',
+    stack: [
+      'React (Vite)',
+      'Node.js',
+      'Express',
+      'MySQL (Aiven Cloud)',
+      'Git/GitHub',
+    ],
+    status: 'repo',
+    featured: false,
+    repoUrl: gh('warkopolo'),
+    highlights: [
+      'Alur status pesanan, validasi input, dan pengelolaan meja secara transaksional.',
+      'Pembatalan booking yang tidak hadir, penyelesaian pesanan, dan pengosongan meja otomatis.',
+    ],
+  },
   {
     slug: 'setujuan-coffee',
     name: 'Prediksi Produk Setujuan Coffee',
@@ -198,6 +210,14 @@ export const copy = {
   links: 'Tautan',
   demo: 'Buka demo',
   next: 'Proyek berikutnya',
+  wake: {
+    button: 'Hidupkan server demo',
+    waking: 'Server sedang dibangunkan, harap tunggu',
+    ready: 'Server siap. Klik tombol di atas untuk menuju demo.',
+    failed: 'Server belum merespons. Coba lagi sebentar lagi.',
+    openLink: 'Buka server langsung',
+    open: 'Buka demo',
+  },
 }
 
 // Hanya status yang perlu label; proyek dengan repositori publik tidak.

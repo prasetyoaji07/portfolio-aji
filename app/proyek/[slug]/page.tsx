@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Button from '@/components/ui/Button'
 import Chip from '@/components/ui/Chip'
+import WakeServer from '@/components/ui/WakeServer'
 import { profile } from '@/content/profile'
 import { copy, projects, statusLabel } from '@/content/projects'
 import { ogImages } from '@/lib/site'
@@ -81,10 +82,17 @@ export default async function ProjectPage({ params }: Props) {
               </ul>
             </section>
           )}
-          {p.note && (
+          {(p.steps || p.note) && (
             <section>
               <h2 className={h}>{copy.note}</h2>
-              <p className="text-mute mt-4">{p.note}</p>
+              {p.steps && (
+                <ol className="mt-4 max-w-[70ch] list-decimal space-y-3 pl-5">
+                  {p.steps.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ol>
+              )}
+              {p.note && <p className="text-mute mt-4">{p.note}</p>}
             </section>
           )}
         </div>
@@ -103,16 +111,25 @@ export default async function ProjectPage({ params }: Props) {
               ))}
             </ul>
           </section>
-          {open && (p.repoUrl || p.demoUrl) && (
+          {open && (p.repoUrl || p.demoUrl || p.apiHealthUrl) && (
             <section>
               <h2 className={h}>{copy.links}</h2>
+              {p.apiHealthUrl && (
+                <div className="mt-4">
+                  <WakeServer
+                    healthUrl={p.apiHealthUrl}
+                    demoUrl={p.demoUrl}
+                    labels={copy.wake}
+                  />
+                </div>
+              )}
               <div className="mt-4 flex flex-wrap gap-3">
                 {p.repoUrl && (
                   <Button href={p.repoUrl} {...external}>
                     {copy.code}
                   </Button>
                 )}
-                {p.demoUrl && (
+                {p.demoUrl && !p.apiHealthUrl && (
                   <Button href={p.demoUrl} variant="outline" {...external}>
                     {copy.demo}
                   </Button>

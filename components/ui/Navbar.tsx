@@ -6,6 +6,7 @@ import { useState } from 'react'
 import Button from '@/components/ui/Button'
 import { profile } from '@/content/profile'
 import { cn } from '@/lib/utils'
+import LiveClock from '@/components/ui/LiveClock'
 
 const link =
   'text-mute hover:text-ink inline-flex min-h-11 items-center text-sm transition-colors duration-300'
@@ -56,7 +57,7 @@ export default function Navbar() {
                 aria-hidden
                 className="bg-red size-2 rounded-full shadow-[0_0_8px_var(--color-red)]"
               />
-              {profile.openTo}
+              <LiveClock />
             </p>
             <Button href={profile.contact.cv} variant="outline" download>
               {profile.cvLabel}
